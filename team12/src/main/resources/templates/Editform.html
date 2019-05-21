@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<form th:object="${leave_application}" th:action="@{/leaverequest}" method="post">
+		<fieldset>
+			staff_id <input type="text" th:field="*{staff_id}" readonly="readonly">
+			<p th:if="${#fields.hasErrors('staff_id')}" th:errors="*{staff_id}"></p>
+		</fieldset>
+		<fieldset>
+			status: <select th:field="*{status}">
+			  <option th:value="'APPLIED'" th:text="APPLIED"></option>
+			  <option th:value="'APPROVED'" th:text="APPROVED"></option>
+			  <option th:value="'REJECTED'" th:text="REJECTED"></option>
+</select>
+		</fieldset>
+			<fieldset>
+			comment: <input type="text" th:field="*{comment}">
+			<p th:if="${#fields.hasErrors('comment')}" th:errors="*{comment}"></p>
+
+			<input type="hidden" th:field="*{id}">
+			<p th:if="${#fields.hasErrors('id')}" th:errors="*{id}"></p>
+			 <input type="hidden" th:field="*{leavetype_id}">
+			<p th:if="${#fields.hasErrors('leavetype_id')}" th:errors="*{leavetype_id}"></p>
+
+			<input type="hidden" th:field="*{start_date}">
+			<p th:if="${#fields.hasErrors('start_date')}" th:errors="*{start_date}"></p>
+
+			<input type="hidden" th:field="*{end_date}">
+			<p th:if="${#fields.hasErrors('end_date')}" th:errors="*{end_date}"></p>
+
+			<input type="hidden" th:field="*{reason}">
+			<p th:if="${#fields.hasErrors('reason')}" th:errors="*{reason}"></p>
+		</fieldset>
+		<fieldset>
+			<button type="submit">Save</button>
+		</fieldset>
+
+	</form>
+</body>
+</html>

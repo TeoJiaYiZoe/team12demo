@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Employee's request</title>
+</head>
+<body>
+<div class="container">
+    <div th:if="${not #lists.isEmpty(leave_application)}">
+        <h2>Employee's request</h2>
+        <table class="table table-striped">
+            <tr>
+            	<th>id</th>
+                <th>start_date</th>
+                <th>end_date</th>
+                <th>leavetype</th>
+                <th>staff_name</th>
+                <th>reason</th>
+                <th>status</th>
+                <th>action</th>
+            </tr>
+            <tr th:each="leave_application:${leave_application}">
+            	<td th:text="${leave_application.id}">id</td>
+				<td th:text="${leave_application.start_date}">start_date</td>
+				<td th:text="${leave_application.end_date}">end_date</td>
+				<td th:text="${leave_application.leavetype.name}">leavetype_id</td>
+				<td th:text="${leave_application.staff.staffname}">staff_name</td>
+				<td th:text="${leave_application.reason}">reason</td>
+				<td th:text="${leave_application.status}">status</td>
+				<td th:text="${leave_application.comment}">comment</td>
+            	<td>
+            		<a th:href="@{'/leaverequest/edit/' + ${leave_application.id}}">Edit</a>
+            </tr>
+        </table>
+         </div>
+ </div>
+</body>
+</html>
